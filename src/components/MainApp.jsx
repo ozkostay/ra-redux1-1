@@ -4,12 +4,14 @@ import changeNumber, { setUserValue } from '../action/changeNumber';
 
 export default function MainApp2() {
   const dispatch = useDispatch();
-  const { numberValue, userValue } = useSelector(state => state.number);
+  const { value: numberValue, userValue } = useSelector(state => state.number);
 
   const submitHandler = (e) => {
     e.preventDefault();
     changeNumber(dispatch)(userValue);
   }
+
+  console.log('numberValue', numberValue, 'userValue', userValue);
 
   return (
     <form onSubmit={submitHandler}>

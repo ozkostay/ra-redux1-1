@@ -3,6 +3,7 @@ import { CHANGE_NUMBER, SET_USER_VALUE } from "./action";
 const changeNumber = (dispatch) => () => {
   const action = {
     type: CHANGE_NUMBER,
+    payload: 123,
   };
   dispatch(action);
 }

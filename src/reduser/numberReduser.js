@@ -1,8 +1,8 @@
 import { CHANGE_NUMBER, SET_USER_VALUE } from '../action/action';
 
 const initialState = {
-  value: 0,
-  userValue: 0,
+  value: 123,
+  userValue: 33,
 }
 
 const numberReduser = (state = initialState, action) => {
