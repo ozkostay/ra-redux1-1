@@ -5,7 +5,7 @@ const initialState = {
   userValue: 0,
 }
 
-const numberReduser = (state = initialState. action) => {
+const numberReduser = (state = initialState, action) => {
   switch (action.type) {
     case CHANGE_NUMBER:
       return {
