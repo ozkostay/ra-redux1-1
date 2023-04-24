@@ -1,17 +1,19 @@
 import { CHANGE_NUMBER, SET_USER_VALUE } from '../action/action';
 
 const initialState = {
-  value: 123,
-  userValue: 33,
+  value: 100,
+  userValue: 0,
 }
 
 const numberReduser = (state = initialState, action) => {
   switch (action.type) {
+    //Кнопка
     case CHANGE_NUMBER:
       return {
         ...state,
         value: state.value + Number(state.userValue)
       }
+    // Поле
     case SET_USER_VALUE:
       return {
         ...state,
