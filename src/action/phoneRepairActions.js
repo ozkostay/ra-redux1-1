@@ -1,4 +1,4 @@
-import { SET_NAME, SET_PRICE, SAVE_REPAIR, CANSEL_REPAIR, EDIT_REPAIR, DELETE_REPAIR, INCREMENT_ID} from '../action/phoneVars';
+import { SET_NAME, SET_PRICE, SAVE_REPAIR, CANSEL_REPAIR, EDIT_REPAIR, DELETE_REPAIR, INCREMENT_ID, EDIT_NOW} from '../action/phoneVars';
 
 // Поле Name
 export const setNameValue = (dispatch) => (nameValue) => {
@@ -56,5 +56,13 @@ export const incrementId = (dispatch) => (newId) => {
   }
   dispatch(action);
 }
+
+export const editNowId = (dispatch) => (id) => {
+  const action = {
+    type: EDIT_NOW,
+    payload: id,
+  }
+  dispatch(action);
+}  
 
 export default setNameValue;

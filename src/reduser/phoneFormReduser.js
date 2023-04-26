@@ -1,4 +1,4 @@
-import { SET_NAME, SET_PRICE, SAVE_REPAIR, CANSEL_REPAIR, EDIT_REPAIR, DELETE_REPAIR, INCREMENT_ID} from '../action/phoneVars';
+import { SET_NAME, SET_PRICE, SAVE_REPAIR, CANSEL_REPAIR, EDIT_REPAIR, DELETE_REPAIR, INCREMENT_ID, EDIT_NOW} from '../action/phoneVars';
 
 
 
@@ -6,6 +6,7 @@ const initialState = {
   name: '',
   price: '',
   maxId: 2,
+  editNow: null,
   repairs: [
     { 
       id: 1,
@@ -66,6 +67,11 @@ const phoneFormReduser = (state = initialState, action) => {
         ...state,
         maxId: action.payload,
       }
+      case EDIT_NOW:
+        return {
+          ...state,
+          editNow: action.payload,
+        }
     default:
       return state;
   }

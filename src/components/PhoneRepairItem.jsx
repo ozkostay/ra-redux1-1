@@ -1,25 +1,26 @@
 import React from "react";
 import {useSelector, useDispatch} from 'react-redux';
-import setNameValue, { setPriceValue, deleteValue, editValue } from '../action/phoneRepairActions';
+import setNameValue, { setPriceValue, deleteValue, editValue, editNowId } from '../action/phoneRepairActions';
 
 
 export default function PhoneRepairItem({item}) {
   // store
   const dispatch = useDispatch();
-  const { name, price, repairs } = useSelector(state => state.repair);
+  const { editNow, name, price, repairs } = useSelector(state => state.repair);
   
 
   function editHandler(id) {
     console.log()
     setNameValue(dispatch)(item.name);
     setPriceValue(dispatch)(item.price);
-    const tempRepairs = [...repairs]
-    tempRepairs.forEach((i) => {
-      if (i.id === id) {
-        i.isEdit = true;
-      }
-    });
-    editValue(dispatch)(tempRepairs);
+    editNowId(dispatch)(item.id);
+    // const tempRepairs = [...repairs]
+    // tempRepairs.forEach((i) => {
+    //   if (i.id === id) {
+    //     i.isEdit = true;
+    //   }
+    // });
+    // editValue(dispatch)(tempRepairs);
   }
   
   //deleteHandler

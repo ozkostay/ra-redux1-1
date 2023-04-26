@@ -1,10 +1,10 @@
 import React from "react";
 import {useSelector, useDispatch} from 'react-redux';
-import setNameValue, { setPriceValue, saveValue, incrementId } from '../action/phoneRepairActions';
+import setNameValue, { setPriceValue, saveValue, incrementId, editNowId } from '../action/phoneRepairActions';
 
 export default function PhoneForm() {
   const dispatch = useDispatch();
-  const { maxId, name, price, repairs } = useSelector(state => state.repair);
+  const { maxId, name, price, editNow, repairs } = useSelector(state => state.repair);
 
 
   function repairNameHandler(event) {
@@ -16,19 +16,30 @@ export default function PhoneForm() {
   }
 
   function saveHandler(event) {
-    const newId = maxId + 1;
+    const newId = (editNow) ? editNow : maxId + 1;
     const obj = {
       id: newId,
       name: name,
       price: price,
     }
-
-    const newRepairs = [...repairs, obj];
     
-    saveValue(dispatch)(newRepairs);
-    incrementId(dispatch)(newId);
-    clearForm();
+    const newRepairs = [...repairs];
+    if (editNow) {
+      newRepairs.forEach(item) {
+        if (item.)
+      }
+    } else {
+      newRepairs.push(obj);
+    }
+        
+    if (!editNow) {
+      saveValue(dispatch)(newRepairs);
+      incrementId(dispatch)(newId);
+    } else {
 
+    }
+    
+    clearForm();
   }
 
   function cancelHandler(event) {
@@ -38,10 +49,11 @@ export default function PhoneForm() {
   function clearForm() {
     setNameValue(dispatch)('');
     setPriceValue(dispatch)('');
+    editNowId(dispatch)(null);
   }
 
   function stateNow() {
-    console.log(repairs)
+    console.log('editNow', editNow)
   }
 
   return (
