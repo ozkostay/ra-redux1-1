@@ -11,7 +11,7 @@ export default function MainApp2() {
     changeNumber(dispatch)(userValue);
   }
 
-  console.log('numberValue', numberValue, 'userValue', userValue);
+  // console.log('numberValue', numberValue, 'userValue', userValue);
 
   return (
     <form onSubmit={submitHandler}>

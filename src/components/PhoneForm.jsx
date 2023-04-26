@@ -1,11 +1,10 @@
 import React from "react";
 import {useSelector, useDispatch} from 'react-redux';
-import setNameValue, { setPriceValue, saveValue, incrementId, editNowId } from '../action/phoneRepairActions';
+import setNameValue, { setPriceValue, saveValue, incrementId, editNowId, deleteValue } from '../action/phoneRepairActions';
 
 export default function PhoneForm() {
   const dispatch = useDispatch();
   const { maxId, name, price, editNow, repairs } = useSelector(state => state.repair);
-
 
   function repairNameHandler(event) {
     setNameValue(dispatch)(event.target.value);
@@ -16,29 +15,27 @@ export default function PhoneForm() {
   }
 
   function saveHandler(event) {
-    const newId = (editNow) ? editNow : maxId + 1;
+    let newId = maxId + 1;
+    const newRepairs = [...repairs];
     const obj = {
       id: newId,
       name: name,
       price: price,
     }
-    
-    const newRepairs = [...repairs];
-    if (editNow) {
-      newRepairs.forEach(item) {
-        if (item.)
-      }
-    } else {
-      newRepairs.push(obj);
-    }
         
-    if (!editNow) {
-      saveValue(dispatch)(newRepairs);
-      incrementId(dispatch)(newId);
+    if (editNow) {
+      const idxForDelete = newRepairs.findIndex((item) => item.id === editNow);
+      if (idxForDelete > -1) {
+        newRepairs.splice(idxForDelete, 1);
+      }
+      obj.id = editNow;
     } else {
-
+      incrementId(dispatch)(newId);  
     }
-    
+    newRepairs.push(obj);
+    newRepairs.sort((a, b) => a.id - b.id);
+    editNowId(dispatch)(null);
+    saveValue(dispatch)(newRepairs);
     clearForm();
   }
 
@@ -53,7 +50,7 @@ export default function PhoneForm() {
   }
 
   function stateNow() {
-    console.log('editNow', editNow)
+    // console.log('editNow', editNow, 'state', repairs)
   }
 
   return (
@@ -63,7 +60,7 @@ export default function PhoneForm() {
         <input type="text"  value={price}  onChange={(e) => priceHandler(e)} />
         <button onClick={saveHandler}>Save</button>
         <button onClick={cancelHandler}>Cansel</button>
-        <button onClick={stateNow}>State</button>
+        {/* <button onClick={stateNow}>State</button> */}
 
       </form>
     </>

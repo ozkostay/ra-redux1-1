@@ -27,7 +27,7 @@ const phoneFormReduser = (state = initialState, action) => {
   switch (action.type) {
     // поле Name
     case SET_NAME:
-      console.log('name', action.payload);
+      // console.log('name', action.payload);
       return {
         ...state,
         name: action.payload,
@@ -40,7 +40,7 @@ const phoneFormReduser = (state = initialState, action) => {
       }
     //Кнопка Save
     case SAVE_REPAIR:
-      console.log('save', action.payload);
+      // console.log('save', action.payload);
       return {
         ...state,
         repairs: action.payload,
@@ -51,13 +51,13 @@ const phoneFormReduser = (state = initialState, action) => {
         ...state,
       }
     case EDIT_REPAIR:
-      console.log('edit', action.payload);
+      // console.log('edit', action.payload);
       return {
         ...state,
         repairs: action.payload,
       }
     case DELETE_REPAIR:
-      console.log(action.payload);
+      // console.log('Delete reduc', action.payload);
       return {
         ...state,
         repairs: state.repairs.filter((i) => i.id !== action.payload),
