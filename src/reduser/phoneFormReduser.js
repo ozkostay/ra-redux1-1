@@ -10,12 +10,14 @@ const initialState = {
     { 
       id: 1,
       name: 'Замена стекла',
-      price: 2100
+      price: 2100,
+      isEdit: false,
     },
     { 
       id: 2,
       name: 'Замена дисплея',
-      price: 21000
+      price: 21000,
+      isEdit: false,
     }
   ]
 }
@@ -46,29 +48,24 @@ const phoneFormReduser = (state = initialState, action) => {
     case CANSEL_REPAIR:
       return {
         ...state,
-        
       }
     case EDIT_REPAIR:
+      console.log('edit', action.payload);
       return {
         ...state,
-        // value: state.value + Number(state.userValue)
+        repairs: action.payload,
       }
     case DELETE_REPAIR:
+      console.log(action.payload);
       return {
         ...state,
-        // value: state.value + Number(state.userValue)
+        repairs: state.repairs.filter((i) => i.id !== action.payload),
       }
     case INCREMENT_ID:
       return {
         ...state,
         maxId: action.payload,
       }
-
-
-
-      
-
-
     default:
       return state;
   }

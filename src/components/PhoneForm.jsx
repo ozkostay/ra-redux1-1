@@ -24,6 +24,7 @@ export default function PhoneForm() {
     }
 
     const newRepairs = [...repairs, obj];
+    
     saveValue(dispatch)(newRepairs);
     incrementId(dispatch)(newId);
     clearForm();
@@ -37,7 +38,11 @@ export default function PhoneForm() {
   function clearForm() {
     setNameValue(dispatch)('');
     setPriceValue(dispatch)('');
-}
+  }
+
+  function stateNow() {
+    console.log(repairs)
+  }
 
   return (
     <>
@@ -46,6 +51,8 @@ export default function PhoneForm() {
         <input type="text"  value={price}  onChange={(e) => priceHandler(e)} />
         <button onClick={saveHandler}>Save</button>
         <button onClick={cancelHandler}>Cansel</button>
+        <button onClick={stateNow}>State</button>
+
       </form>
     </>
   );
